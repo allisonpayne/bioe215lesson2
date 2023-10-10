@@ -1,0 +1,42 @@
+*Computational thinking 1*
+
+The reading exercises can be found [here](reading.md).
+
+The assessment is below.
+
+*Team Ctenophora*
+
+Q1
+
+```{r}
+
+species_codes <- c( "GREG" = "Great Egret", "MALL" = "Mallard", "MAWR" = "Marsh Wren", "KILL" = "Killdeer"
+)
+
+sightings = c("GREG", "GREG", "MALL", "MAWR", "KILL", "GREG")
+
+# Modify this line to use species_codes so your counts have common names
+
+sightings <- table(sightings)
+sightings[]
+
+names(sightings) <- species_codes
+
+setNames(table(sightings), species_codes)
+```
+
+Q2
+
+Why adding 1 to a POSIXct datetime object increments it by a second - because the value of POSIXct vectors represents the number of seconds since January 1, 1970 (a double) and spit out a datetime format.
+
+The default origin is 1970-01-01.
+
+```{r}
+new_now <- as.POSIXct(0, origin = "2000-01-01 12:00:00", tz = "UTC")
+```
+
+How to take away the POSIXct class?
+
+```{r}
+new_now
+```
