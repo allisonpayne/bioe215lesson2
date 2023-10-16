@@ -22,7 +22,6 @@ sightings[]
 
 names(sightings) <- species_codes
 
-setNames(table(sightings), species_codes)
 ```
 
 Q2
@@ -40,3 +39,50 @@ How to take away the POSIXct class?
 ```{r}
 new_now
 ```
+
+Q3
+
+```{r}
+x <- list(1, 2, 3)
+y <- x[2]
+z <- x[[2]]
+
+class(y)
+class(z)
+```
+
+Y is a list, while z is numeric. It's because of the double brackets, which means that you can subset the section without getting the "title".
+
+Q4
+
+In data frames, the elements of the list are the columns, and length() is equivalent to nrows(). I don't know why!!
+
+Q5
+
+```{r}
+experiment <- data.frame(
+    plot = c("p1", "p2", "p3", "p4"),
+    N_g = c(0.2, 0.7, 0.3, 0.2),
+    P_g = c(0.1, 0.1, 0.5, 0.6)
+)
+
+nutrient <- "N_g"
+```
+
+I would use experiment\$N_g. It would not change, because it is already numeric, and atomic vectors include logicals, integers, complex, etc.
+
+Q6
+
+```{r}
+library(palmerpenguins) 
+penguins_by_island <- split(penguins, penguins$island)
+mean_mass <- list(
+    Biscoe = mean(penguins_by_island$Biscoe$body_mass_g, na.rm = TRUE),
+    Dream = mean(penguins_by_island$Dream$body_mass_g, na.rm = TRUE),
+    Torgersen = mean(penguins_by_island$Torgersen$body_mass_g, na.rm = TRUE)
+)
+```
+
+The function split() divides the data (first argument) and reassembles it into groups defined by the second argument.
+
+In mean_mass, we create a list containing each Island and the mean mass of penguins on that island. We remove NAs. We subset each island by taking our grouped data frame, subsetting by the island, and then selecting the body mass column.
